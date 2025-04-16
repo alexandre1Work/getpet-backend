@@ -25,7 +25,7 @@ const User = mongoose.model(
         required: true,
       },
     },
-    { timestamps: true } //data de criação e atualização
+    { timestamps: true } //data de criação e atualização 
   )
 );
 
