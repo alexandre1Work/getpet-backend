@@ -1,5 +1,7 @@
+const createUserToken = require("../helpers/create-user-token.js");
 const User = require("../models/User.js");
 const bcrypt = require("bcrypt");
+const createUserToken = require('../helpers/create-user-token.js')
 
 module.exports = class UserController {
   static async register(req, res) {
@@ -55,10 +57,9 @@ module.exports = class UserController {
 
     try {
       const newUser = await user.save();
-      res.status(201).json({
-        message: 'Usuário criado!',
-        newUser
-      })
+      
+      await createUserToken(newUser, req, res);
+      
     } catch (error) {
       console.log(error);
     }
