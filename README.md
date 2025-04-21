@@ -1,4 +1,4 @@
-# 🐾 appgetpet - Backend
+# 🐾 App getpet - Backend
 
 API RESTful em desenvolvimento com **Node.js** e **Express**, com o objetivo de fornecer os dados e serviços para a aplicação web **appgetpet**, uma plataforma voltada para a adoção responsável de animais.
 
