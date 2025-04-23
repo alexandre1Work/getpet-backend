@@ -144,25 +144,32 @@ module.exports = class UserController {
 
     let image = "";
 
+    if(req.file) {
+      user.image = req.file.filename
+    }
+
     //validations
     if (!name) {
       res.status(422).json({ message: "O nome é obrigatório" });
       return;
     }
+
+    user.name = name
+
     if (!email) {
       res.status(422).json({ message: "O email é obrigatório" });
       return;
     }
 
-    //check if email has already taken
-    const userExists = await User.findOne({ email: email });
+    // check if user exists
+    const userExists = await User.findOne({ email: email })
 
-    if (user.email != email && userExists) {
-      res.status(422).json({ message: "Por favor, utilize outro email!" });
-      return;
+    if (user.email !== email && userExists) {
+      res.status(422).json({ message: 'Por favor, utilize outro e-mail!' })
+      return
     }
 
-    user.email = email;
+    user.email = email
 
     if (!phone) {
       res.status(422).json({ message: "O telefone é obrigatório" });
