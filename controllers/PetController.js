@@ -17,23 +17,23 @@ module.exports = class PetController {
     //validations
     if (!name) {
       res.status(422).json({ message: "O nome é obrigatório!" });
-      return
+      return;
     }
     if (!age) {
       res.status(422).json({ message: "A idade é obrigatória!" });
-      return
+      return;
     }
     if (!weight) {
       res.status(422).json({ message: "O peso é obrigatório!" });
-      return
+      return;
     }
     if (!color) {
       res.status(422).json({ message: "A cor é obrigatória!" });
-      return
+      return;
     }
     if (images.length === 0) {
       res.status(422).json({ message: "A imagem é obrigatória!" });
-      return
+      return;
     }
 
     //get pet owner
@@ -66,5 +66,11 @@ module.exports = class PetController {
     } catch (error) {
       res.status(500).json({ message: error });
     }
+  }
+
+  static async getAll(req, res) {
+    const pets = await Pet.find().sort("-createdAt");
+
+    res.status(200).json({ pets: pets });
   }
 };
