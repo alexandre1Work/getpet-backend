@@ -15,7 +15,12 @@ const imageStorage = multer.diskStorage({
     cb(null, `public/images/${folder}`);
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(
+      null,
+      Date.now() +
+        String(Math.floor(Math.random() * 1000)) +
+        path.extname(file.originalname)
+    );
   },
 });
 
@@ -26,6 +31,9 @@ const imageUpload = multer({
       return cb(new Error("Por favor, envie apenas jpg ou png!"));
     }
     cb(undefined, true);
+  },
+  limits: {
+    files: 7,
   },
 });
 
