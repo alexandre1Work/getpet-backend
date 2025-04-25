@@ -13,5 +13,6 @@ router.post(
 );
 
 router.get("/", PetController.getAll)
+router.get("/mypets", PetController.getAllMyPets)
 
 module.exports = router;
