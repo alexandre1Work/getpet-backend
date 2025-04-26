@@ -14,5 +14,6 @@ router.post(
 
 router.get("/", PetController.getAll)
 router.get("/mypets", PetController.getAllMyPets)
+router.get("/myadoptions", verifyToken, PetController.getAllUserAdoptions)
 
 module.exports = router;
